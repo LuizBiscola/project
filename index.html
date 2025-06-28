@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kemlin Leticia Tatoo - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quintessential&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <div class="nome">
+                    <h2>Kemlin Leticia Tatoo</h2>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Início</a></li>
+                <li><a href="#bio" class="nav-link">Biografia</a></li>
+                <li><a href="#works" class="nav-link">Trabalhos</a></li>
+                <li><a href="#studio" class="nav-link">Estúdio</a></li>
+                <li><a href="#events" class="nav-link">Eventos</a></li>
+                <li><a href="#contact" class="nav-link">Contato</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="nome">
+                <h1>Kemlin Leticia</h1>
+            </div>
+            <p class="hero-subtitle">Artista Tatuadora</p>
+            <p class="hero-description">Transformando pele em arte há mais de 5 anos</p>
+            <a href="#contact" class="cta-button">Agendar Consulta</a>
+        </div>
+        <div class="hero-image">
+            <div class="hero-placeholder">
+                <img src="img/maos-luvas-tatuagem.jpg" alt="Kemlin Leticia - Artista Tatuadora" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Biografia -->
+    <section id="bio" class="biography">
+        <div class="container">
+            <h2 class="section-title">Sobre Kemlin Leticia</h2>
+            <div class="bio-content">
+                <div class="bio-text">
+                    <p>Kemlin Leticia é uma artista tatuadora apaixonada por sua arte, com mais de 5 anos de experiência transformando ideias em obras de arte permanentes na pele. Sua jornada começou com o amor pelo desenho e evoluiu para uma carreira dedicada à tatuagem artística.</p>
+                    
+                    <p>Especializada em diversos estilos, desde tatuagens realistas até designs abstratos e minimalistas, Kemlin sempre busca entender a história por trás de cada tatuagem, criando peças únicas e significativas para cada cliente.</p>
+                    
+                    <p>Com formação em artes visuais e constante aperfeiçoamento técnico, ela mantém os mais altos padrões de higiene e segurança, utilizando apenas equipamentos esterilizados e tintas de primeira qualidade.</p>
+                    
+                    <div class="bio-stats">
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Tatuagens Realizadas</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Anos de Experiência</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Clientes Satisfeitos</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bio-image">
+                    <div class="bio-placeholder">
+                        <img src="img/1000178795.jpg" alt="Kemlin Leticia - Foto Profissional" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trabalhos -->
+    <section id="works" class="works">
+        <div class="container">
+            <h2 class="section-title">Meus Trabalhos</h2>
+            <div class="works-filter">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="realistic">Fine Line</button>
+                <button class="filter-btn" data-filter="traditional">Lettering</button>
+                <button class="filter-btn" data-filter="minimalist">Floral</button>
+                <button class="filter-btn" data-filter="geometric">Cobertura</button>
+            </div>
+            <div class="works-grid">
+                <div class="work-item" data-category="realistic">
+                    <div class="work-placeholder">
+                        <p>Tatuagem Realista 1</p>
+                    </div>
+                    <div class="work-overlay">
+                        <h3>Retrato Realista</h3>
+                        <p>Técnica: Realismo</p>
+                    </div>
+                </div>
+                <div class="work-item" data-category="traditional">
+                    <div class="work-placeholder">
+                        <p>Tatuagem Tradicional 1</p>
+                    </div>
+                    <div class="work-overlay">
+                        <h3>Rosa Tradicional</h3>
+                        <p>Técnica: Old School</p>
+                    </div>
+                </div>
+                <div class="work-item" data-category="minimalist">
+                    <div class="work-placeholder">
+                        <p>Tatuagem Minimalista 1</p>
+                    </div>
+                    <div class="work-overlay">
+                        <h3>Linha Fina</h3>
+                        <p>Técnica: Minimalista</p>
+                    </div>
+                </div>
+                <div class="work-item" data-category="geometric">
+                    <div class="work-placeholder">
+                        <p>Tatuagem Geométrica 1</p>
+                    </div>
+                    <div class="work-overlay">
+                        <h3>Mandala</h3>
+                        <p>Técnica: Geométrica</p>
+                    </div>
+                </div>
+                <div class="work-item" data-category="realistic">
+                    <div class="work-placeholder">
+                        <p>Tatuagem Realista 2</p>
+                    </div>
+                    <div class="work-overlay">
+                        <h3>Animal Realista</h3>
+                        <p>Técnica: Realismo</p>
+                    </div>
+                </div>
+                <div class="work-item" data-category="minimalist">
+                    <div class="work-placeholder">
+                        <p>Tatuagem Minimalista 2</p>
+                    </div>
+                    <div class="work-overlay">
+                        <h3>Símbolo Delicado</h3>
+                        <p>Técnica: Minimalista</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estúdio -->
+    <section id="studio" class="studio">
+        <div class="container">
+            <h2 class="section-title">Nosso Estúdio</h2>
+            <p class="section-description">Um ambiente profissional, seguro e acolhedor para sua experiência de tatuagem</p>
+            
+            <!-- Item 1: Imagem à esquerda, texto à direita -->
+            <div class="studio-feature">
+                <div class="studio-image">
+                    <img src="img/unnamed1.jpg" alt="Área de Trabalho do Estúdio">
+                </div>
+                <div class="studio-content">
+                    <h3>Área de Trabalho</h3>
+                    <p>Nosso espaço de trabalho é totalmente esterilizado e equipado com os melhores materiais do mercado. Cada sessão é realizada com máximo cuidado e higiene, garantindo sua segurança e conforto durante todo o processo de tatuagem.</p>
+                    <ul class="studio-features-list">
+                        <li>Equipamentos esterilizados</li>
+                        <li>Materiais descartáveis</li>
+                        <li>Ambiente climatizado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Item 2: Imagem à esquerda, texto à direita -->
+            <div class="studio-feature">
+                <div class="studio-content">
+                    <h3>Área de Espera</h3>
+                    <p>Criamos um ambiente acolhedor e confortável para que você possa relaxar antes da sua sessão. Nossa área de espera foi pensada para proporcionar tranquilidade e deixá-lo à vontade enquanto finaliza os detalhes do seu projeto.</p>
+                    <ul class="studio-features-list">
+                        <li>Ambiente confortável</li>
+                        <li>Música ambiente</li>
+                        <li>Água e café disponíveis</li>
+                    </ul>
+                    <div class="studio-image">
+                        <img src="img/unnamed.jpg" alt="Área de Espera do Estúdio">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: Texto à esquerda, imagem à direita -->
+            <div class="studio-feature reverse">
+                <div class="studio-image">
+                    <div class="studio-placeholder">
+                        <p>Equipamentos Profissionais</p>
+                    </div>
+                </div>
+                <div class="studio-content">
+                    <h3>Equipamentos de Última Geração</h3>
+                    <p>Utilizamos apenas máquinas modernas e materiais de primeira qualidade. Todos os nossos equipamentos são regularmente inspecionados e mantidos para garantir o melhor resultado em cada trabalho realizado.</p>
+                    <ul class="studio-features-list">
+                        <li>Máquinas rotativas profissionais</li>
+                        <li>Tintas de alta qualidade</li>
+                        <li>Agulhas descartáveis certificadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eventos -->
+    <section id="events" class="events">
+        <div class="container">
+            <h2 class="section-title">Contrate Nossos Eventos</h2>
+            <p class="section-description">Leve a arte da tatuagem para seu evento especial</p>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-icon">🎉</div>
+                    <h3>Festas Privadas</h3>
+                    <p>Tatuagens temporárias e permanentes para suas celebrações especiais</p>
+                    <ul class="event-features">
+                        <li>Tatuagens personalizadas</li>
+                        <li>Materiais profissionais</li>
+                        <li>Atendimento exclusivo</li>
+                    </ul>
+                    <div class="event-price">A partir de R$ 800</div>
+                    <button class="event-btn">Solicitar Orçamento</button>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🏢</div>
+                    <h3>Eventos Corporativos</h3>
+                    <p>Ativações de marca e team building com arte corporal</p>
+                    <ul class="event-features">
+                        <li>Branding personalizado</li>
+                        <li>Equipe profissional</li>
+                        <li>Flexibilidade de horário</li>
+                    </ul>
+                    <div class="event-price">A partir de R$ 1200</div>
+                    <button class="event-btn">Solicitar Orçamento</button>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🎪</div>
+                    <h3>Convenções</h3>
+                    <p>Participação em convenções de tatuagem e eventos culturais</p>
+                    <ul class="event-features">
+                        <li>Stand profissional</li>
+                        <li>Portfolio completo</li>
+                        <li>Networking</li>
+                    </ul>
+                    <div class="event-price">Consultar valores</div>
+                    <button class="event-btn">Solicitar Orçamento</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Informações de Contato</h3>
+                    <div class="contact-item">
+                        <strong>📍 Endereço:</strong>
+                        <p>Rua das Artes, 123 - Centro<br>São Paulo, SP - CEP: 01234-567</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>📞 Telefone:</strong>
+                        <p>(11) 99999-9999</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>📧 Email:</strong>
+                        <p>contato@kemlinleticiatatoo.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>🕒 Horário de Funcionamento:</strong>
+                        <p>Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 16h</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/kemlin_leticia_tattoo/" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">WhatsApp</a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <h3>Envie uma Mensagem</h3>
+                    <div class="form-group">
+                        <input type="text" id="name" required>
+                        <label for="name">Nome</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone">
+                        <label for="phone">Telefone</label>
+                    </div>
+                    <div class="form-group">
+                        <select id="service" required>
+                            <option value="">Selecione o serviço</option>
+                            <option value="tattoo">Tatuagem</option>
+                            <option value="consultation">Consulta</option>
+                            <option value="event">Evento</option>
+                            <option value="other">Outro</option>
+                        </select>
+                        <label for="service">Tipo de Serviço</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" required></textarea>
+                        <label for="message">Mensagem</label>
+                    </div>
+                    <button type="submit" class="form-submit">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Kemlin Leticia Tatoo</h3>
+                    <p>Transformando pele em arte</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Início</a>
+                    <a href="#bio">Biografia</a>
+                    <a href="#works">Trabalhos</a>
+                    <a href="#studio">Estúdio</a>
+                    <a href="#events">Eventos</a>
+                    <a href="#contact">Contato</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kemlin Leticia Tatoo. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal para imagens -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <div id="modalCaption"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
