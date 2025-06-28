@@ -249,7 +249,14 @@ if (heroTitle) {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        
+        // Check if href is just '#' (placeholder link)
+        if (href === '#') {
+            return;
+        }
+        
+        const target = document.querySelector(href);
         if (target) {
             const headerHeight = document.querySelector('.header').offsetHeight;
             const targetPosition = target.offsetTop - headerHeight;
