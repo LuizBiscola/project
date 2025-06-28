@@ -13,6 +13,14 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
     navMenu.classList.remove('active');
 }));
 
+// Fechar menu móvel ao clicar fora
+document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    }
+});
+
 // Navegação suave e ativa
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -34,6 +42,16 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
+});
+
+// Header background on scroll
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    if (window.scrollY > 100) {
+        header.style.background = 'rgba(0, 0, 0, 0.98)';
+    } else {
+        header.style.background = 'rgba(0, 0, 0, 0.95)';
+    }
 });
 
 // Filtro de trabalhos
@@ -76,6 +94,8 @@ const closeModal = document.querySelector('.close');
 workItems.forEach(item => {
     item.addEventListener('click', () => {
         modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevenir scroll
+        
         const title = item.querySelector('.work-overlay h3').textContent;
         const description = item.querySelector('.work-overlay p').textContent;
         
@@ -94,13 +114,23 @@ workItems.forEach(item => {
 });
 
 // Fechar modal
-closeModal.addEventListener('click', () => {
+const closeModalFunction = () => {
     modal.style.display = 'none';
-});
+    document.body.style.overflow = 'auto'; // Restaurar scroll
+};
+
+closeModal.addEventListener('click', closeModalFunction);
 
 window.addEventListener('click', (e) => {
     if (e.target === modal) {
-        modal.style.display = 'none';
+        closeModalFunction();
+    }
+});
+
+// Fechar modal com ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+        closeModalFunction();
     }
 });
 
@@ -111,12 +141,17 @@ contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
     // Coletar dados do formulário
-    const formData = new FormData(contactForm);
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
     const service = document.getElementById('service').value;
     const message = document.getElementById('message').value;
+    
+    // Validação básica
+    if (!name || !email || !message || !service) {
+        alert('Por favor, preencha todos os campos obrigatórios.');
+        return;
+    }
     
     // Simular envio
     const submitBtn = document.querySelector('.form-submit');
@@ -130,6 +165,13 @@ contactForm.addEventListener('submit', (e) => {
         contactForm.reset();
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
+        
+        // Reset labels
+        document.querySelectorAll('.form-group label').forEach(label => {
+            label.style.top = '1rem';
+            label.style.fontSize = 'clamp(0.9rem, 2vw, 1rem)';
+            label.style.color = '#ccc';
+        });
     }, 2000);
 });
 
@@ -146,8 +188,17 @@ eventButtons.forEach(button => {
         
         // Pré-preencher o formulário
         setTimeout(() => {
-            document.getElementById('service').value = 'event';
-            document.getElementById('message').value = `Gostaria de solicitar um orçamento para: ${eventTitle}`;
+            const serviceSelect = document.getElementById('service');
+            const messageTextarea = document.getElementById('message');
+            
+            serviceSelect.value = 'event';
+            messageTextarea.value = `Gostaria de solicitar um orçamento para: ${eventTitle}`;
+            
+            // Trigger label animation
+            serviceSelect.dispatchEvent(new Event('focus'));
+            messageTextarea.dispatchEvent(new Event('focus'));
+            serviceSelect.dispatchEvent(new Event('blur'));
+            messageTextarea.dispatchEvent(new Event('blur'));
         }, 500);
     });
 });
@@ -162,33 +213,37 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+            entry.target.style.opacity = '1';
         }
     });
 }, observerOptions);
 
 // Observar elementos para animação
-document.querySelectorAll('.work-item, .studio-item, .event-card, .bio-stats .stat').forEach(el => {
+document.querySelectorAll('.work-item, .studio-feature, .event-card, .bio-stats .stat').forEach(el => {
+    el.style.opacity = '0';
     observer.observe(el);
 });
 
 // Efeito de digitação no hero
 const heroTitle = document.querySelector('.hero h1');
-const originalText = heroTitle.textContent;
-heroTitle.textContent = '';
+if (heroTitle) {
+    const originalText = heroTitle.textContent;
+    heroTitle.textContent = '';
 
-let i = 0;
-const typeWriter = () => {
-    if (i < originalText.length) {
-        heroTitle.textContent += originalText.charAt(i);
-        i++;
-        setTimeout(typeWriter, 100);
-    }
-};
+    let i = 0;
+    const typeWriter = () => {
+        if (i < originalText.length) {
+            heroTitle.textContent += originalText.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+        }
+    };
 
-// Iniciar efeito após carregamento da página
-window.addEventListener('load', () => {
-    setTimeout(typeWriter, 1000);
-});
+    // Iniciar efeito após carregamento da página
+    window.addEventListener('load', () => {
+        setTimeout(typeWriter, 1000);
+    });
+}
 
 // Smooth scroll para links internos
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -196,22 +251,35 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const headerHeight = document.querySelector('.header').offsetHeight;
+            const targetPosition = target.offsetTop - headerHeight;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
             });
         }
     });
 });
 
 // Efeito parallax sutil no hero
-window.addEventListener('scroll', () => {
+let ticking = false;
+
+function updateParallax() {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
     const heroContent = document.querySelector('.hero-content');
     
     if (hero && scrolled < hero.offsetHeight) {
-        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+        heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+    }
+    ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
     }
 });
 
@@ -238,13 +306,51 @@ const animateCounters = () => {
 
 // Ativar contador quando a seção biografia estiver visível
 const bioSection = document.getElementById('bio');
-const bioObserver = new IntersectionObserver((entries) => {
+if (bioSection) {
+    const bioObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                bioObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    bioObserver.observe(bioSection);
+}
+
+// Lazy loading para imagens
+const images = document.querySelectorAll('img');
+const imageObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            animateCounters();
-            bioObserver.unobserve(entry.target);
+            const img = entry.target;
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.3s ease';
+            
+            img.onload = () => {
+                img.style.opacity = '1';
+            };
+            
+            imageObserver.unobserve(img);
         }
     });
-}, { threshold: 0.5 });
+});
 
-bioObserver.observe(bioSection);
+images.forEach(img => imageObserver.observe(img));
+
+// Melhorar performance do scroll
+let scrollTimer = null;
+window.addEventListener('scroll', () => {
+    if (scrollTimer !== null) {
+        clearTimeout(scrollTimer);
+    }
+    scrollTimer = setTimeout(() => {
+        // Código que deve executar após o scroll parar
+    }, 150);
+}, { passive: true });
+
+// Prevenção de FOUC (Flash of Unstyled Content)
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.style.visibility = 'visible';
+});

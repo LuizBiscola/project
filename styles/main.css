@@ -39,17 +39,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 700;
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     font-weight: 600;
 }
 
 h3 {
-    font-size: 1.8rem;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
     font-weight: 500;
 }
 
@@ -68,6 +68,7 @@ p {
     z-index: 1000;
     padding: 1rem 0;
     transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar {
@@ -82,7 +83,7 @@ p {
 .nav-brand h2 {
     color: #fff;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     font-weight: 600;
 }
 
@@ -96,8 +97,10 @@ p {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
     position: relative;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
 }
 
 .nav-link:hover,
@@ -111,7 +114,7 @@ p {
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -5px;
+    bottom: 0;
     left: 0;
     background-color: #fff;
     transition: width 0.3s ease;
@@ -126,6 +129,7 @@ p {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    padding: 0.5rem;
 }
 
 .hamburger span {
@@ -134,6 +138,19 @@ p {
     background: #fff;
     margin: 3px 0;
     transition: 0.3s;
+    border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* Hero Section */
@@ -162,7 +179,6 @@ p {
 .hero-content {
     flex: 1;
     max-width: 600px;
-    padding-left: 250px;
     z-index: 3;
     position: relative;
 }
@@ -177,7 +193,7 @@ p {
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     color: #fff;
     margin-bottom: 1rem;
     animation: fadeInUp 1s ease 0.2s both;
@@ -185,7 +201,7 @@ p {
 }
 
 .hero-description {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: #ccc;
     margin-bottom: 2rem;
     animation: fadeInUp 1s ease 0.4s both;
@@ -199,11 +215,13 @@ p {
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2vw, 1.1rem);
     transition: all 0.3s ease;
     animation: fadeInUp 1s ease 0.6s both;
     position: relative;
     overflow: hidden;
+    text-align: center;
+    min-width: 200px;
 }
 
 .cta-button::before {
@@ -236,8 +254,8 @@ p {
 }
 
 .hero-placeholder {
-    width: 400px;
-    height: 500px;
+    width: min(400px, 80vw);
+    height: min(500px, 60vh);
     background: linear-gradient(45deg, #1a1a1a, #333);
     border-radius: 20px;
     display: flex;
@@ -249,6 +267,7 @@ p {
     animation: fadeInRight 1s ease 0.8s both;
     overflow: hidden;
     position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .hero-placeholder img {
@@ -258,12 +277,12 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 18px; /* Ligeiramente menor que o container para manter a borda */
+    border-radius: 18px;
 }
 
 /* Sections */
 section {
-    padding: 5rem 0;
+    padding: clamp(3rem, 8vw, 5rem) 0;
 }
 
 .section-title {
@@ -287,7 +306,7 @@ section {
 
 .section-description {
     text-align: center;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     color: #ccc;
     margin-bottom: 3rem;
     max-width: 600px;
@@ -330,6 +349,16 @@ section {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .hero-content {
+        padding-left: 0;
+    }
+    
+    .container {
+        padding: 0 1.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -340,46 +369,86 @@ section {
         left: -100%;
         top: 70px;
         flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.95);
+        background-color: rgba(0, 0, 0, 0.98);
         width: 100%;
         text-align: center;
         transition: 0.3s;
         padding: 2rem 0;
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .nav-menu.active {
         left: 0;
     }
     
+    .nav-menu li {
+        margin: 0.5rem 0;
+    }
+    
     .hero {
         flex-direction: column;
         text-align: center;
         padding: 6rem 2rem 2rem;
+        gap: 2rem;
     }
     
-    .hero h1 {
-        font-size: 2.5rem;
+    .hero-content {
+        order: 2;
+        max-width: 100%;
+    }
+    
+    .hero-image {
+        order: 1;
     }
     
     .hero-placeholder {
-        width: 300px;
-        height: 350px;
-        margin-top: 2rem;
-    }
-    
-    .hero-placeholder img {
-        border-radius: 18px;
-    }
-    
-    h1 {
-        font-size: 2.5rem;
-    }
-    
-    h2 {
-        font-size: 2rem;
+        width: min(300px, 90vw);
+        height: min(350px, 50vh);
+        margin-bottom: 1rem;
     }
     
     .container {
         padding: 0 1rem;
+    }
+    
+    .navbar {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 5rem 1rem 2rem;
+    }
+    
+    .hero-placeholder {
+        width: min(280px, 95vw);
+        height: min(320px, 45vh);
+    }
+    
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .container {
+        padding: 0 0.5rem;
+    }
+    
+    .navbar {
+        padding: 0 0.5rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .hero-placeholder {
+        width: 95vw;
+        height: 40vh;
+    }
+    
+    .nav-brand h2 {
+        font-size: 1rem;
     }
 }
